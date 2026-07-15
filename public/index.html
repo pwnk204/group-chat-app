@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Chats</h2>
+                <button id="menu-btn" title="Menu">⋮</button>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+            </div>
+            <ul class="contact-list">
+                <li class="contact active">
+                    <div class="avatar">K</div>
+                    <div class="contact-info">
+                        <span class="name">pawan</span>
+                        <span class="preview">Where is the nearest...</span>
+                    </div>
+                </li>
+                <li class="contact">
+                    <div class="avatar">M</div>
+                    <div class="contact-info">
+                        <span class="name">pawan</span>
+                        <span class="preview">Thanks again you have been...</span>
+                    </div>
+                </li>
+            </ul>
+        </aside>
+
+        <main class="chat-area">
+            <header class="chat-header">
+                <h2>pawan</h2>
+            </header>
+
+            <div class="messages-container" id="messages-container">
+                <div class="message received">
+                    <p>It was all a dream, I used to read Word Up magazine.</p>
+                    <span class="time">12:38</span>
+                </div>
+                <div class="message sent">
+                    <p>Did you ever hang pictures on your wall?</p>
+                    <span class="time">12:39</span>
+                </div>
+            </div>
+
+            <form class="message-input-area" id="chat-form">
+                <input type="text" id="message-input" placeholder="Type a message..." required autocomplete="off">
+                <button type="submit">Send</button>
+            </form>
+        </main>
+
+    </div>
+</body>
+
+</html>
