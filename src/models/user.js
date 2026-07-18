@@ -11,6 +11,9 @@ export default (sequelize, DataTypes) => {
     static associate(models) {
       // define associations here, e.g.:
       // User.hasMany(models.Post, { foreignKey: 'userId' });
+      User.hasMany(models.Message, {foreignKey: 'senderId'});
+
+      User.belongsToMany(models.Room, {through: models.UserRoom, foreignKey: userId});
     }
   }
 

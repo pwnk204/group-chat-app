@@ -1,6 +1,7 @@
-import { Model } from "sequelize";
-export default (sequelize, DataTypes) => {
-  class Message extends Model {
+"use strict";
+const { Model } = require("sequelize");
+module.exports = (sequelize, DataTypes) => {
+  class UserRoom extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -8,23 +9,11 @@ export default (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Message.belongsTo(models.User, {foreignKey: 'senderId', as:'sender'});
-      Message.belongsTo(models.Room, {foreignKey: 'roomId', as:'room'});
     }
   }
-  Message.init(
+  UserRoom.init(
     {
-      id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-        allowNull: false,
-      },
-      content: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
-      senderId: {
+      userId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
@@ -38,18 +27,18 @@ export default (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: "Users",
+          model: "Rooms",
           key: "id",
         },
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
-      },
+      }
     },
     {
       sequelize,
-      modelName: "Message",
+      modelName: "UserRoom",
       timestamps: true,
     },
   );
-  return Message;
+  return UserRoom;
 };
