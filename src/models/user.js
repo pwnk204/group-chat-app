@@ -1,6 +1,7 @@
-"use strict";
-const { Model } = require("sequelize");
-module.exports = (sequelize, DataTypes) => {
+
+import { Model } from "sequelize";
+
+export default (sequelize, DataTypes) => {
   class User extends Model {
     /**
      * Helper method for defining associations.
@@ -8,9 +9,11 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      // define associations here, e.g.:
+      // User.hasMany(models.Post, { foreignKey: 'userId' });
     }
   }
+
   User.init(
     {
       id: {
@@ -32,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
         unique: true,
         validate: {
           isEmail: true,
-        }
+        },
       },
       phone: {
         type: DataTypes.STRING,
@@ -40,9 +43,8 @@ module.exports = (sequelize, DataTypes) => {
         unique: true,
         validate: {
           notEmpty: true,
-        }
-
-      }, 
+        },
+      },
       isVerified: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
@@ -52,8 +54,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           notEmpty: true,
-        }
-
+        },
       },
       verificationToken: {
         type: DataTypes.STRING,
@@ -62,13 +63,14 @@ module.exports = (sequelize, DataTypes) => {
       verificationTokenExpiry: {
         type: DataTypes.DATE,
         allowNull: true,
-      }
+      },
     },
     {
       sequelize,
       modelName: "User",
-      timestamps: true
-    },
+      timestamps: true,
+    }
   );
+
   return User;
 };

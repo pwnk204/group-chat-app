@@ -1,11 +1,11 @@
 import { StatusCodes } from "http-status-codes";
-import db from "../models/index.cjs";
+import db from "../models/index.js";
 import crypto from "crypto";
 import bcrypt from "bcrypt";
 import { response } from "express";
 import { error } from "console";
 
-console.log("db: ", db);
+// console.log("db: ", db);
 const {User, sequelize} = db;
 
 const registerUser = async (req, res) => {
