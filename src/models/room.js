@@ -9,7 +9,7 @@ export default (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Room.hasMany(models.Message, {foreignKey: 'roomId'})
-      Room.belongsToMany(models.User, {through: models.UserRoom, foreignKey: roomId})
+      Room.belongsToMany(models.User, {through: models.UserRoom, foreignKey: 'roomId'})
     }
   }
   Room.init(

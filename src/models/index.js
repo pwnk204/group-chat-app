@@ -30,7 +30,6 @@ const db = {
   Message,
   Room,
   UserRoom,
-  post
 };
 
 Object.keys(db).forEach(modelName => {
