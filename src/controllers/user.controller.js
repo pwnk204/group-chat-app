@@ -4,6 +4,7 @@ import crypto from "crypto";
 import bcrypt from "bcrypt";
 import { response } from "express";
 import { error } from "console";
+import jwt from "jsonwebtoken"
 
 // console.log("db: ", db);
 const {User, sequelize} = db;
@@ -81,7 +82,7 @@ const registerUser = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
 
-  console.log("Login attempt", { email: userEmail });
+  console.log("Login attempt", { email });
 
   if (!password || !email) {
     return res

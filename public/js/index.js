@@ -1,7 +1,9 @@
 const CURRENT_ROOM_ID = 1;
 const CURRENT_USER_ID = 1;
 
-const socket = io();
+const socket = io({
+  withCredentials: true
+});
 
 async function sendMessage(e) {
   e.preventDefault();
@@ -28,6 +30,14 @@ socket.on('receiveMessage', (message) => {
     messagesContainer.appendChild(messageElement);
 
 })
+
+socket.on("connect_error", (err) => {
+  console.error("Socket connection failed:", err.message);
+  
+  if (err.message.includes('Authentication error')) {
+    window.location.href = '/login.html'; 
+  }
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   const chatForm = document.getElementById("chat-form");
