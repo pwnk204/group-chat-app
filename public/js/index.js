@@ -21,9 +21,8 @@ async function sendMessage(e) {
 }
 
 socket.on('receiveMessage', (message) => {
-  const messagesContainer = document.getElementById('messages-container');
+    const messagesContainer = document.getElementById('messages-container');
 
-    messagesContainer.innerHTML = '';
     const messageElement = document.createElement('div');
     messageElement.innerHTML = message;
     messagesContainer.appendChild(messageElement);
