@@ -8,6 +8,7 @@ import db from "./models/index.js"
 import { createServer } from 'node:http';
 import {Server} from 'socket.io'
 import jwt from "jsonwebtoken"
+import { setupSocketHandlers } from "./sockets/index.js";
 
 
 const app = express();
@@ -64,15 +65,7 @@ io.use((socket, next) => {
 });
 
 
-io.on('connection', (socket) => {
-  console.log('a user connected', socket.id);
-  socket.on('sendMessage', (message) => {
-    io.emit('receiveMessage', message.text);
-  })
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
-});
+setupSocketHandlers(io);
 
 app.use("/api", apiRoutes);
 
