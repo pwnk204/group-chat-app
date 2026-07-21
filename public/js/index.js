@@ -5,6 +5,8 @@ const socket = io({
   withCredentials: true
 });
 
+socket.emit('create', 'room1');
+
 async function sendMessage(e) {
   e.preventDefault();
 
@@ -24,9 +26,9 @@ async function sendMessage(e) {
 
 socket.on('receiveMessage', (message) => {
     const messagesContainer = document.getElementById('messages-container');
-
+    console.log("received message from server: ", message);
     const messageElement = document.createElement('div');
-    messageElement.innerHTML = message;
+    messageElement.innerHTML = `${message.name}: ${message.message.text}`;
     messagesContainer.appendChild(messageElement);
 
 })

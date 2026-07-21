@@ -17,7 +17,7 @@ const io = new Server(server);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-console.log("filename: ", __filename, ' ', "dirname: ", __dirname);
+
 
 
 app.use(express.urlencoded({extended: true}));
@@ -66,6 +66,12 @@ io.use((socket, next) => {
 
 
 setupSocketHandlers(io);
+
+io.sockets.on('connection', function(socket) {
+  socket.on('create', function(room) {
+    socket.join(room);
+  });
+});
 
 app.use("/api", apiRoutes);
 
