@@ -67,12 +67,6 @@ io.use((socket, next) => {
 
 setupSocketHandlers(io);
 
-io.sockets.on('connection', function(socket) {
-  socket.on('create', function(room) {
-    socket.join(room);
-  });
-});
-
 app.use("/api", apiRoutes);
 
 server.listen(ServerConfig.port , (err) => {
